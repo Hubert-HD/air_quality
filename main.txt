@@ -1,0 +1,15 @@
+INTERPRETER
+
+tcov reset 
+create test := new Test()
+print test.run()
+tcov write test.tc
+rtinfo test.tc
+
+-----------------------------------
+
+create sample_1 := new Sample ({  <SO> |-> 23,   <NO2> |-> 31,   <CO2> |-> 3,   <O3> |-> 12,   <PST> |-> 5})
+create sample_2 := new Sample ({  <SO> |-> 13,   <NO2> |-> 33,   <CO2> |-> 32,   <O3> |-> 42,   <PST> |-> 55})
+create sample_3 := new Sample ({  <SO> |-> 34,   <NO2> |-> 90,   <CO2> |-> 32,   <O3> |-> 54,   <PST> |-> 50})
+create sys := new Systems ({ mk_token(1) |-> sample_1, mk_token(2) |-> sample_2, mk_token(3) |-> sample_3})
+sys.checkAirQuality()

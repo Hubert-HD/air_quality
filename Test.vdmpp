@@ -1,0 +1,23 @@
+class Test
+
+instance variables
+private system: Systems;
+private reports: seq of Systems`Report := [];
+operations
+public init: () ==> ()
+init() == (
+  system := new Systems ({ 
+    mk_token(1) |-> new Sample ({  <SO> |-> 50,   <NO2> |-> 50,   <CO2> |-> 50,   <O3> |-> 50,   <PST> |-> 50}), 
+    mk_token(2) |-> new Sample ({  <SO> |-> 150,   <NO2> |-> 150,   <CO2> |-> 150,   <O3> |-> 150,   <PST> |-> 150}), 
+    mk_token(3) |-> new Sample ({  <SO> |-> 250,   <NO2> |-> 250,   <CO2> |-> 250,   <O3> |-> 250,   <PST> |-> 250}),
+    mk_token(4) |-> new Sample ({  <SO> |-> 350,   <NO2> |-> 350,   <CO2> |-> 350,   <O3> |-> 350,   <PST> |-> 350})
+  });
+);
+
+public run: () ==> ()
+run() == (
+  init();
+  reports := system.checkAirQuality();
+);
+
+end Test

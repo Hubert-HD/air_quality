@@ -1,0 +1,36 @@
+class Systems
+
+types
+public Report :: 
+  sampleId  : token
+  color     : Alarm`Color
+  message   : Alarm`String
+  result    : real;
+
+instance variables
+private myAnalyzer: Analyzer := new Analyzer();
+private myAlarm: Alarm;
+private samples: map token to Sample;
+private reports: seq of Report := [];
+
+operations
+
+public Systems: map token to Sample ==> Systems
+Systems(sample_params) == (
+  myAlarm := new Alarm(mk_token("alarm_1"));
+  samples := sample_params;
+);
+
+public checkAirQuality: () ==> seq of Report
+checkAirQuality() == (
+  for all sampleId in set dom samples do
+    reports := reports^[mk_Report(
+      sampleId, 
+      myAlarm.getColor(myAnalyzer.analyze(samples(sampleId))),
+      myAlarm.getMessage(myAnalyzer.analyze(samples(sampleId))), 
+      myAnalyzer.analyze(samples(sampleId))
+    )];
+  return reports;
+);
+
+end Systems

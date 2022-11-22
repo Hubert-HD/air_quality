@@ -1,0 +1,31 @@
+class Alarm
+
+types 
+  public Color = <GREEN> | <YELLOW> | <ORANGE> | <NO_COLOR>;
+  public String = seq of char;
+
+instance variables
+private id: token;
+private indicator: map Color to String := { <GREEN> |-> "BUENA", <YELLOW> |-> "MODEADA", <ORANGE> |-> "DAÑINA", <NO_COLOR> |-> "NONE"};
+
+operations
+
+public Alarm: token ==> Alarm
+Alarm(id_param) == (
+  id := id_param;
+);
+
+public getColor: real ==> Color
+getColor(airQuality) == (
+  if (0 < airQuality and airQuality < 100) then return <GREEN>;
+  if (100 < airQuality and airQuality < 200) then return <YELLOW>;
+  if (200 < airQuality and airQuality < 300) then return <ORANGE>;
+  return <NO_COLOR>;
+);
+
+public getMessage: real ==> String
+getMessage(airQuality) == (
+  return indicator(getColor(airQuality));
+);
+
+end Alarm

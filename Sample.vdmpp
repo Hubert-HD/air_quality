@@ -1,0 +1,24 @@
+class Sample
+
+types 
+  public Gas = <SO> | <NO2> | <CO2> | <O3> | <PST>;
+
+instance variables
+private components: map Gas to real;
+inv card dom components = 5;
+inv dom components = { <SO> , <NO2> , <CO2> , <O3> , <PST> };
+inv forall gas in set { <SO> , <NO2> , <CO2> , <O3> , <PST> } & 0 < components(gas) and components(gas) < 500;
+
+operations
+
+public Sample: map Gas to real ==> Sample
+Sample(components_param) == (
+  components := components_param;
+);
+
+public getComponents:() ==> map Gas to real
+getComponents() == (
+  return components;
+);
+
+end Sample

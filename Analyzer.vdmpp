@@ -1,0 +1,22 @@
+class Analyzer
+
+instance variables
+private so: real;
+private no2: real;
+private co2: real;
+private o3: real;
+private pst: real;
+
+operations
+
+public analyze: Sample ==> real
+analyze(sample) == (
+  so := sample.getComponents()(<SO>);
+  no2 := sample.getComponents()(<NO2>);
+  co2 := sample.getComponents()(<CO2>);
+  o3 := sample.getComponents()(<O3>);
+  pst := sample.getComponents()(<PST>);
+  return (so + no2 + co2 + o3 + pst) / 5;
+);
+
+end Analyzer
